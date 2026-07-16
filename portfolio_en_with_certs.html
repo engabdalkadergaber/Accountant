@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohamed Essam Fathy – Certified General Accountant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #2C2C2B;
+      background: #F8F9FA;
+    }
+
+    :root {
+      --primary:      #1B3A5C;
+      --primary-light:#254d7a;
+      --accent:       #C9943A;
+      --accent-soft:  #F5E9D4;
+      --neutral-bg:   #F8F9FA;
+      --surface:      #FFFFFF;
+      --text-main:    #2C2C2B;
+      --text-sub:     #5C5B58;
+      --border:       #E0DDD8;
+      --radius:       8px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--primary);
+      padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--accent);
+      font-size: 1.25rem; font-weight: 700;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,.85);
+      text-decoration: none;
+      font-size: .88rem; font-weight: 600;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: white; margin: 5px 0; }
+
+    /* HERO */
+    #hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--primary) 60%, #254d7a 100%);
+      color: white;
+      padding: 80px 48px 64px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 64px; flex-wrap: wrap;
+    }
+    /* Strands animated background layer */
+    #hero > .strands-container {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background: transparent;
+    }
+    #hero > .strands-container canvas {
+      display: block; width: 100%; height: 100%; background: transparent;
+    }
+    /* Lift hero content above the canvas */
+    #hero > .hero-photo,
+    #hero > .hero-text { position: relative; z-index: 1; }
+    .hero-photo {
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      border: 4px solid var(--accent);
+      overflow: hidden; flex-shrink: 0;
+      background: #254d7a;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-initials {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; color: var(--accent);
+    }
+    .hero-text { max-width: 560px; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent-soft); color: var(--accent);
+      font-size: .78rem; font-weight: 700;
+      padding: 4px 14px; border-radius: 20px;
+      margin-bottom: 16px; letter-spacing: .5px;
+    }
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700; line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .hero-text .subtitle {
+      font-size: 1.1rem; color: var(--accent);
+      font-weight: 600; margin-bottom: 20px;
+    }
+    .hero-text p {
+      font-size: 1rem;
+      color: rgba(255,255,255,.85);
+      line-height: 1.75; margin-bottom: 32px;
+    }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--accent); color: white;
+      padding: 12px 28px; border-radius: var(--radius);
+      font-size: .95rem; font-weight: 700;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: #b5832d; transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: white;
+      border: 2px solid rgba(255,255,255,.5);
+      padding: 11px 28px; border-radius: var(--radius);
+      font-size: .95rem; font-weight: 700;
+      text-decoration: none; transition: border-color .2s, transform .15s;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: center; flex-wrap: wrap;
+    }
+    .stat-item {
+      padding: 28px 48px; text-align: center;
+      border-right: 1px solid var(--border);
+      flex: 1; min-width: 160px;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 700;
+      color: var(--primary);
+    }
+    .stat-label { font-size: .82rem; color: var(--text-sub); margin-top: 4px; }
+
+    /* SECTIONS */
+    section { padding: 72px 48px; }
+    section:nth-child(even) { background: var(--surface); }
+    .section-inner { max-width: 960px; margin: 0 auto; }
+    .section-tag {
+      display: inline-block;
+      color: var(--accent); font-size: .78rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px;
+    }
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
+      color: var(--primary);
+      margin-bottom: 40px;
+      position: relative; padding-bottom: 16px;
+    }
+    h2.section-title::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 48px; height: 3px;
+      background: var(--accent); border-radius: 2px;
+    }
+
+    /* EXPERIENCE */
+    .exp-card {
+      background: var(--neutral-bg);
+      border-radius: 12px; padding: 32px;
+      margin-bottom: 28px;
+      border: 1px solid var(--border);
+      transition: box-shadow .2s;
+    }
+    .exp-card:hover { box-shadow: 0 4px 20px rgba(27,58,92,.1); }
+    .exp-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; flex-wrap: wrap;
+      gap: 12px; margin-bottom: 20px;
+    }
+    .exp-title { font-size: 1.1rem; font-weight: 700; color: var(--primary); }
+    .exp-company { font-size: .92rem; color: var(--text-sub); margin-top: 4px; }
+    .exp-period {
+      background: var(--accent-soft); color: var(--accent);
+      font-size: .8rem; font-weight: 700;
+      padding: 4px 12px; border-radius: 20px; white-space: nowrap;
+    }
+    .exp-bullets { list-style: none; margin-bottom: 24px; }
+    .exp-bullets li {
+      padding: 6px 0;
+      color: var(--text-main); font-size: .95rem;
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+    .exp-bullets li::before {
+      content: '\25B8'; color: var(--accent);
+      flex-shrink: 0; margin-top: 2px;
+    }
+
+    /* CHARTS */
+    .chart-section { margin-top: 16px; }
+    .chart-title {
+      font-size: .78rem; font-weight: 700; color: var(--text-sub);
+      margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .chart-bar-group { display: flex; flex-direction: column; gap: 10px; }
+    .chart-row { display: flex; align-items: center; gap: 12px; }
+    .chart-label {
+      width: 200px; font-size: .82rem; color: var(--text-main);
+      text-align: right; flex-shrink: 0;
+    }
+    .chart-track {
+      flex: 1; height: 28px;
+      background: var(--border); border-radius: 6px;
+      overflow: hidden; position: relative;
+    }
+    .chart-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: 6px; width: 0;
+      transition: width 1.4s cubic-bezier(.16,1,.3,1);
+      display: flex; align-items: center;
+    }
+    .chart-fill.accent {
+      background: linear-gradient(90deg, var(--accent) 0%, #d9a84a 100%);
+    }
+    .chart-value {
+      position: absolute; left: 10px; top: 50%;
+      transform: translateY(-50%);
+      font-size: .75rem; font-weight: 700; color: white;
+    }
+    .chart-value-right {
+      width: 60px; font-size: .82rem; font-weight: 700;
+      color: var(--primary); flex-shrink: 0;
+    }
+
+    /* ACHIEVEMENTS */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .ach-card {
+      background: var(--primary); color: white;
+      border-radius: 12px; padding: 28px 24px; text-align: center;
+    }
+    .ach-icon { font-size: 2rem; margin-bottom: 12px; }
+    .ach-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--accent);
+    }
+    .ach-desc { font-size: .85rem; margin-top: 8px; color: rgba(255,255,255,.85); line-height: 1.5; }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .skill-group h3 {
+      font-size: .95rem; font-weight: 700; color: var(--primary);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .skill-group h3 span { color: var(--accent); font-size: 1.2rem; }
+    .skill-item {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-bottom: 12px;
+    }
+    .skill-name { font-size: .88rem; color: var(--text-main); }
+    .skill-dots { display: flex; gap: 5px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+    .dot.filled { background: var(--primary); }
+    .dot.accent-fill { background: var(--accent); }
+
+    /* CERTIFICATIONS */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+    .cert-card {
+      background: var(--neutral-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px 20px; text-align: center;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .cert-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(27,58,92,.12); }
+    .cert-badge {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--accent-soft);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px; font-size: 1.5rem;
+    }
+    .cert-name { font-size: .92rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+    .cert-year { font-size: .78rem; color: var(--text-sub); }
+
+    /* CERTIFICATE IMAGES — Expanding cards on Hover */
+    .cert-images {
+      margin-top: 40px;
+      display: flex;
+      gap: 14px;
+      min-height: 420px;
+      align-items: stretch;
+    }
+    .cert-img-card {
+      position: relative;
+      flex: 1;
+      min-width: 0;
+      cursor: zoom-in;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--neutral-bg);
+      border: 1px solid var(--border);
+      transition: flex 0.55s cubic-bezier(0.25, 0.8, 0.25, 1),
+                  box-shadow 0.35s ease,
+                  transform 0.35s ease;
+      will-change: flex;
+    }
+    .cert-img-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.6s ease, filter 0.4s ease;
+      filter: saturate(.85) brightness(.96);
+    }
+    .cert-img-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(27,58,92,0) 45%, rgba(27,58,92,.78) 100%);
+      opacity: 0;
+      transition: opacity .45s ease;
+      pointer-events: none;
+    }
+    .cert-img-card .cert-img-label {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: 16px 18px;
+      color: #fff;
+      font-size: .95rem;
+      font-weight: 700;
+      letter-spacing: .3px;
+      transform: translateY(12px);
+      opacity: 0;
+      transition: opacity .35s ease .1s, transform .45s ease .05s;
+      pointer-events: none;
+      text-shadow: 0 1px 6px rgba(0,0,0,.35);
+    }
+    .cert-img-card .cert-img-label small {
+      display: block;
+      font-size: .72rem;
+      font-weight: 500;
+      opacity: .85;
+      margin-top: 3px;
+    }
+    .cert-images:hover .cert-img-card { flex: 0.6; }
+    .cert-images .cert-img-card:hover {
+      flex: 5;
+      box-shadow: 0 18px 40px rgba(27,58,92,.22);
+    }
+    .cert-img-card:hover img { filter: saturate(1) brightness(1); transform: scale(1.02); }
+    .cert-img-card:hover::before { opacity: 1; }
+    .cert-img-card:hover .cert-img-label { opacity: 1; transform: translateY(0); }
+
+    /* Tablet */
+    @media (max-width: 900px) {
+      .cert-images { min-height: 340px; gap: 10px; }
+    }
+    /* Mobile — stack vertically, disable hover-expand, always show label */
+    @media (max-width: 640px) {
+      .cert-images {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        min-height: unset;
+      }
+      .cert-img-card {
+        flex: unset;
+        aspect-ratio: 3 / 4;
+        min-height: 200px;
+      }
+      .cert-images:hover .cert-img-card,
+      .cert-images .cert-img-card:hover { flex: unset; }
+      .cert-img-card::before { opacity: 1; }
+      .cert-img-card .cert-img-label { opacity: 1; transform: translateY(0); font-size: .82rem; padding: 10px 12px; }
+      .cert-img-card img { filter: none; }
+      .cert-img-card:last-child:nth-child(odd) { grid-column: span 2; aspect-ratio: 16 / 9; }
+    }
+
+    /* LIGHTBOX */
+    .cert-lightbox {
+      position: fixed; inset: 0;
+      background: rgba(15, 25, 40, .92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity .3s ease;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .cert-lightbox.is-open { display: flex; opacity: 1; }
+    .cert-lightbox img {
+      max-width: min(1100px, 96vw);
+      max-height: 88vh;
+      width: auto; height: auto;
+      border-radius: 10px;
+      box-shadow: 0 24px 60px rgba(0,0,0,.5);
+      object-fit: contain;
+      background: #fff;
+      animation: cert-zoom-in .35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    @keyframes cert-zoom-in {
+      from { transform: scale(.9); opacity: 0; }
+      to   { transform: scale(1);  opacity: 1; }
+    }
+    .cert-lightbox-caption {
+      position: absolute;
+      bottom: 24px; left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: .9rem;
+      font-weight: 600;
+      background: rgba(0,0,0,.4);
+      padding: 8px 16px;
+      border-radius: 20px;
+      max-width: 90vw;
+      text-align: center;
+    }
+    .cert-lightbox-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      color: #fff;
+      font-size: 1.6rem;
+      line-height: 1;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, transform .2s;
+    }
+    .cert-lightbox-close:hover { background: rgba(255,255,255,.22); transform: rotate(90deg); }
+    .cert-lightbox-nav {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      color: #fff;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .cert-lightbox-nav:hover { background: rgba(255,255,255,.22); }
+    .cert-lightbox-nav.prev { left: 20px; }
+    .cert-lightbox-nav.next { right: 20px; }
+    @media (max-width: 640px) {
+      .cert-lightbox-nav { width: 40px; height: 40px; font-size: 1.1rem; }
+      .cert-lightbox-nav.prev { left: 8px; }
+      .cert-lightbox-nav.next { right: 8px; }
+      .cert-lightbox-close { top: 12px; right: 12px; }
+    }
+    body.cert-lock { overflow: hidden; }
+
+    /* TESTIMONIALS */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .review-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px;
+      position: relative;
+    }
+    .review-card::before {
+      content: '\201C';
+      position: absolute; top: 16px; left: 20px;
+      font-size: 3rem; color: var(--accent-soft);
+      font-family: Georgia, serif; line-height: 1;
+    }
+    .review-text {
+      font-size: .9rem; color: var(--text-main);
+      line-height: 1.75; margin-bottom: 16px; padding-top: 8px;
+    }
+    .review-author {
+      display: flex; align-items: center; gap: 12px;
+      border-top: 1px solid var(--border); padding-top: 16px;
+    }
+    .review-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; color: white; font-weight: 700;
+      flex-shrink: 0; overflow: hidden;
+    }
+    .review-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .review-name { font-size: .88rem; font-weight: 700; color: var(--primary); }
+    .review-company { font-size: .76rem; color: var(--text-sub); margin-top: 2px; }
+    .stars { color: var(--accent); font-size: .85rem; margin-bottom: 4px; }
+
+    /* SOFTWARE */
+    .software-grid { display: flex; flex-wrap: wrap; gap: 14px; }
+    .sw-chip {
+      background: var(--surface);
+      border: 1.5px solid var(--primary);
+      border-radius: 8px; padding: 10px 20px;
+      font-size: .88rem; font-weight: 600; color: var(--primary);
+      display: flex; align-items: center; gap: 8px;
+      transition: background .2s, color .2s;
+    }
+    .sw-chip:hover { background: var(--primary); color: white; }
+    .sw-chip span { font-size: 1.1rem; }
+
+    /* CONTACT */
+    #contact { background: var(--primary); }
+    #contact .section-tag { color: var(--accent-soft); }
+    #contact h2.section-title { color: white; }
+    #contact h2.section-title::after { background: var(--accent); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 40px; align-items: start;
+    }
+    .contact-info p {
+      color: rgba(255,255,255,.8); font-size: .95rem;
+      margin-bottom: 24px; line-height: 1.75;
+    }
+    .contact-list { list-style: none; }
+    .contact-list li {
+      display: flex; align-items: center; gap: 12px;
+      color: rgba(255,255,255,.9); margin-bottom: 16px; font-size: .92rem;
+    }
+    .contact-list li a { color: rgba(255,255,255,.9); text-decoration: none; transition: color .2s; }
+    .contact-list li a:hover { color: var(--accent); }
+    .contact-icon {
+      width: 38px; height: 38px; border-radius: 8px;
+      background: rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .cta-buttons { display: flex; flex-direction: column; gap: 14px; }
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      background: #25D366; color: white;
+      padding: 14px 28px; border-radius: var(--radius);
+      font-size: 1rem; font-weight: 700;
+      text-decoration: none; transition: background .2s, transform .15s;
+    }
+    .btn-whatsapp:hover { background: #1ebe5b; transform: translateY(-2px); }
+    .btn-email {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      background: transparent; color: white;
+      border: 2px solid rgba(255,255,255,.4);
+      padding: 13px 28px; border-radius: var(--radius);
+      font-size: 1rem; font-weight: 700;
+      text-decoration: none; transition: border-color .2s, transform .15s;
+    }
+    .btn-email:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+    .btn-linkedin {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      background: #0077B5; color: white;
+      padding: 13px 28px; border-radius: var(--radius);
+      font-size: 1rem; font-weight: 700;
+      text-decoration: none; transition: background .2s, transform .15s;
+    }
+    .btn-linkedin:hover { background: #006097; transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer {
+      background: #0f2238; color: rgba(255,255,255,.5);
+      text-align: center; padding: 24px; font-size: .82rem;
+    }
+
+    /* WHATSAPP FLOAT */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,.4);
+      z-index: 999; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,.5); }
+    .wa-float svg { width: 30px; height: 30px; fill: white; }
+    .wa-tooltip {
+      position: fixed; bottom: 35px; right: 98px;
+      background: #333; color: white; font-size: .82rem;
+      padding: 6px 12px; border-radius: 6px;
+      white-space: nowrap; opacity: 0; pointer-events: none;
+      transition: opacity .2s;
+    }
+    .wa-float:hover + .wa-tooltip { opacity: 1; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--primary); padding: 20px; gap: 16px; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: block; }
+      #hero { padding: 48px 24px; gap: 32px; text-align: center; }
+      .hero-ctas { justify-content: center; }
+      section { padding: 48px 20px; }
+      .stat-item { padding: 20px 24px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .chart-label { width: 130px; font-size: .76rem; }
+      .exp-header { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .achievements-grid { grid-template-columns: 1fr 1fr; }
+      .hero-photo { width: 140px; height: 140px; }
+      .wa-float { bottom: 20px; right: 20px; }
+    }
+
+    /* ANIMATION */
+    .reveal {
+      opacity: 1; transform: translateY(0);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MEF</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#achievements">Achievements</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <!-- Strands animated background (React Bits — vanilla port) -->
+  <div id="strands" class="strands-container" aria-hidden="true"></div>
+
+  <div class="hero-photo">
+    <img src="Personal photo.gif" alt="Mohamed Essam Fathy"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+    <div class="hero-initials" style="display:none">ME</div>
+  </div>
+  <div class="hero-text">
+    <div class="hero-badge">&#9734; CMA &nbsp;|&nbsp; DipIFR ACCA &nbsp;|&nbsp; VAT Certified</div>
+    <h1>Mohamed Essam Fathy</h1>
+    <div class="subtitle">General Accountant &amp; Certified Financial Expert</div>
+    <p>A seasoned General Accountant with <strong>9+ years of experience</strong> in financial and management accounting — including 6 years in the Kuwaiti market. Proven track record of managing multi-million-dinar portfolios with 99%+ reconciliation accuracy and a consistent record of zero audit remarks.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-primary">&#128222; Get In Touch</a>
+      <a href="#experience" class="btn-outline">&#128194; View Experience</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-number" data-original="9+">9+</div>
+    <div class="stat-label">Years of Accounting Experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number" data-original="+30M">+30M</div>
+    <div class="stat-label">KWD Portfolio Managed</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number" data-original="99%">99%</div>
+    <div class="stat-label">Financial Reconciliation Accuracy</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number" data-original="70+">70+</div>
+    <div class="stat-label">Annual Reports — Zero Remarks</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number" data-original="5">5</div>
+    <div class="stat-label">Professional Certifications</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <span class="section-tag">&#9679; Who I Am</span>
+    <h2 class="section-title">Professional Summary</h2>
+    <div class="reveal" style="display:grid;grid-template-columns:3fr 2fr;gap:40px;align-items:start;">
+      <div>
+        <p style="font-size:1.05rem;line-height:1.8;color:var(--text-main);margin-bottom:20px;">
+          I am an Egyptian General Accountant based in Kuwait, specializing in financial and management accounting for multi-branch and large-scale organizations. I have managed the books for over 15 companies/subsidiaries simultaneously, prepared 70+ annual financial reports with zero external auditor remarks, and consistently delivered accurate, compliant reporting under tight deadlines.
+        </p>
+        <p style="font-size:1.05rem;line-height:1.8;color:var(--text-main);">
+          I hold a valid work residency until 2027, along with internationally recognized credentials: CMA, DipIFR ACCA, and the VAT Compliance Certificate from the Kuwaiti Ministry of Finance.
+        </p>
+      </div>
+      <div style="background:var(--accent-soft);border-radius:12px;padding:24px;">
+        <div style="font-size:.82rem;font-weight:700;color:var(--primary);margin-bottom:16px;">&#9670; Quick Facts</div>
+        <div style="font-size:.88rem;color:var(--text-main);display:flex;flex-direction:column;gap:10px;">
+          <div>&#128205; Hawalli, Kuwait</div>
+          <div>&#127891; B.Sc. Commerce (English) — Benha University (81%)</div>
+          <div>&#128197; Born: September 5, 1992</div>
+          <div>&#127760; Arabic (Native) &nbsp;|&nbsp; English (Excellent)</div>
+          <div>&#9989; Work Residency valid until 2027</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <span class="section-tag">&#9679; Career History</span>
+    <h2 class="section-title">Work Experience</h2>
+
+    <!-- Job 1 -->
+    <div class="exp-card reveal">
+      <div class="exp-header">
+        <div>
+          <div class="exp-title">General Accountant</div>
+          <div class="exp-company">&#127970; Al-Safwa General Trading &amp; Contracting Company — Kuwait</div>
+        </div>
+        <div class="exp-period">2019 – Present</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Prepared monthly and annual financial statements for 3 subsidiary branches</li>
+        <li>Managed accounts payable &amp; receivable with annual transactions exceeding KWD 8 million</li>
+        <li>Executed monthly bank reconciliations across 12 active bank accounts</li>
+        <li>Filed VAT returns with 100% accuracy — zero penalties or violations</li>
+        <li>Reduced monthly accounting discrepancies by 35% through improved internal review mechanisms</li>
+      </ul>
+      <div class="chart-section">
+        <div class="chart-title">Key Performance Metrics — This Role</div>
+        <div class="chart-bar-group">
+          <div class="chart-row">
+            <div class="chart-label">VAT Filing Accuracy</div>
+            <div class="chart-track">
+              <div class="chart-fill" data-width="100">
+                <span class="chart-value">100%</span>
+              </div>
+            </div>
+            <div class="chart-value-right">100%</div>
+          </div>
+          <div class="chart-row">
+            <div class="chart-label">Discrepancy Reduction</div>
+            <div class="chart-track">
+              <div class="chart-fill accent" data-width="35">
+                <span class="chart-value">–35%</span>
+              </div>
+            </div>
+            <div class="chart-value-right">–35%</div>
+          </div>
+          <div class="chart-row">
+            <div class="chart-label">Bank Accounts Managed</div>
+            <div class="chart-track">
+              <div class="chart-fill" data-width="80">
+                <span class="chart-value">12 accounts</span>
+              </div>
+            </div>
+            <div class="chart-value-right">12</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Job 2 -->
+    <div class="exp-card reveal">
+      <div class="exp-header">
+        <div>
+          <div class="exp-title">Senior Accountant</div>
+          <div class="exp-company">&#127959; Alghanim Real Estate Investment Group — Kuwait</div>
+        </div>
+        <div class="exp-period">2016 – 2019</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Managed books for 5 real estate projects with a combined portfolio value of KWD 22 million</li>
+        <li>Prepared monthly cash flow reports and monitored budget variances</li>
+        <li>Participated in annual closing accounts in coordination with an external audit firm</li>
+      </ul>
+      <div class="chart-section">
+        <div class="chart-title">Portfolio Scope</div>
+        <div class="chart-bar-group">
+          <div class="chart-row">
+            <div class="chart-label">Portfolio Value (M KWD)</div>
+            <div class="chart-track">
+              <div class="chart-fill" data-width="73">
+                <span class="chart-value">22M KWD</span>
+              </div>
+            </div>
+            <div class="chart-value-right">22M</div>
+          </div>
+          <div class="chart-row">
+            <div class="chart-label">Real Estate Projects</div>
+            <div class="chart-track">
+              <div class="chart-fill accent" data-width="50">
+                <span class="chart-value">5 projects</span>
+              </div>
+            </div>
+            <div class="chart-value-right">5</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Job 3 -->
+    <div class="exp-card reveal">
+      <div class="exp-header">
+        <div>
+          <div class="exp-title">Accountant</div>
+          <div class="exp-company">&#129525; Oriental Weavers Carpet Company — Cairo, Egypt</div>
+        </div>
+        <div class="exp-period">2014 – 2016</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Recorded and tracked daily journal entries and expenses across 4 retail branches</li>
+        <li>Prepared monthly inventory reports and conducted fixed-asset audits</li>
+      </ul>
+      <div class="chart-section">
+        <div class="chart-title">Operational Scope</div>
+        <div class="chart-bar-group">
+          <div class="chart-row">
+            <div class="chart-label">Retail Branches Covered</div>
+            <div class="chart-track">
+              <div class="chart-fill" data-width="40">
+                <span class="chart-value">4 branches</span>
+              </div>
+            </div>
+            <div class="chart-value-right">4</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-inner">
+    <span class="section-tag">&#9679; Measured Results</span>
+    <h2 class="section-title">Key Achievements</h2>
+    <div class="achievements-grid">
+      <div class="ach-card reveal">
+        <div class="ach-icon">&#9889;</div>
+        <div class="ach-value">50%</div>
+        <div class="ach-desc">Reduced monthly closing time from 10 days down to just 5 days (2021)</div>
+      </div>
+      <div class="ach-card reveal">
+        <div class="ach-icon">&#128209;</div>
+        <div class="ach-value">70+</div>
+        <div class="ach-desc">Annual financial reports delivered with zero remarks from external auditors</div>
+      </div>
+      <div class="ach-card reveal">
+        <div class="ach-icon">&#128176;</div>
+        <div class="ach-value">45K</div>
+        <div class="ach-desc">KWD saved annually through improved expense-control mechanisms</div>
+      </div>
+      <div class="ach-card reveal">
+        <div class="ach-icon">&#128101;</div>
+        <div class="ach-value">4</div>
+        <div class="ach-desc">Junior accountants trained and onboarded on internal accounting systems</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <span class="section-tag">&#9679; Competencies</span>
+    <h2 class="section-title">Skills &amp; Expertise</h2>
+    <div class="skills-grid reveal">
+      <div class="skill-group">
+        <h3><span>&#128202;</span> Financial Accounting</h3>
+        <div class="skill-item"><span class="skill-name">Financial Statement Preparation</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Bank Reconciliation</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
+        <div class="skill-item"><span class="skill-name">VAT Compliance &amp; Filing</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Annual Closing Accounts</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+      </div>
+      <div class="skill-group">
+        <h3><span>&#128200;</span> Financial Analysis</h3>
+        <div class="skill-item"><span class="skill-name">Cash Flow Reporting</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Budget Forecasting</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Financial Analysis</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Inventory Management</span><div class="skill-dots"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div></div></div>
+      </div>
+      <div class="skill-group">
+        <h3><span>&#129309;</span> Soft Skills</h3>
+        <div class="skill-item"><span class="skill-name">Team Training &amp; Mentoring</span><div class="skill-dots"><div class="dot accent-fill"></div><div class="dot accent-fill"></div><div class="dot accent-fill"></div><div class="dot accent-fill"></div><div class="dot"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Communication &amp; Reporting</span><div class="skill-dots"><div class="dot accent-fill"></div><div class="dot accent-fill"></div><div class="dot accent-fill"></div><div class="dot accent-fill"></div><div class="dot accent-fill"></div></div></div>
+        <div class="skill-item"><span class="skill-name">Time Management</span><div class="skill-dots"><div class="dot accent-fill"></div><div class="dot accent-fill"></div><div class="dot accent-fill"></div><div class="dot accent-fill"></div><div class="dot"></div></div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;">
+      <div class="section-tag" style="margin-bottom:16px;">&#9679; Accounting Software</div>
+      <div class="software-grid reveal">
+        <div class="sw-chip"><span>&#128309;</span> SAP FI/CO</div>
+        <div class="sw-chip"><span>&#128994;</span> QuickBooks</div>
+        <div class="sw-chip"><span>&#128995;</span> Microsoft Dynamics 365</div>
+        <div class="sw-chip"><span>&#128308;</span> Oracle NetSuite</div>
+        <div class="sw-chip"><span>&#128993;</span> Tally ERP 9</div>
+        <div class="sw-chip"><span>&#128215;</span> Advanced Excel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <span class="section-tag">&#9679; Credentials</span>
+    <h2 class="section-title">Professional Certifications</h2>
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <div class="cert-badge">&#127941;</div>
+        <div class="cert-name">CMA</div>
+        <div class="cert-year">Certified Management Accountant &middot; 2020</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge">&#128220;</div>
+        <div class="cert-name">CPA Track</div>
+        <div class="cert-year">3 of 4 Exams Completed &middot; 2019</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge">&#127760;</div>
+        <div class="cert-name">DipIFR ACCA</div>
+        <div class="cert-year">IFRS Diploma — ACCA &middot; 2018</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge">&#127476;&#127484;</div>
+        <div class="cert-name">VAT Compliance</div>
+        <div class="cert-year">Kuwait Ministry of Finance &middot; 2019</div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-badge">&#128202;</div>
+        <div class="cert-name">Advanced Excel</div>
+        <div class="cert-year">Financial Analysis — AUC &middot; 2015</div>
+      </div>
+    </div>
+
+    <!-- Certificate images: expanding cards on hover -->
+    <div class="cert-images reveal" role="list">
+      <div class="cert-img-card" role="listitem" tabindex="0"
+           data-full="Certificates/CMA.jpg" data-caption="CMA — Certified Management Accountant · 2020">
+        <img src="Certificates/CMA.jpg" alt="CMA Certificate" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.classList.add('img-missing');">
+        <div class="cert-img-label">CMA<small>Certified Management Accountant · 2020</small></div>
+      </div>
+      <div class="cert-img-card" role="listitem" tabindex="0"
+           data-full="Certificates/CPA Track.jpg" data-caption="CPA Track — 3 of 4 Exams Completed · 2019">
+        <img src="Certificates/CPA Track.jpg" alt="CPA Track Certificate" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.classList.add('img-missing');">
+        <div class="cert-img-label">CPA Track<small>3 of 4 Exams Completed · 2019</small></div>
+      </div>
+      <div class="cert-img-card" role="listitem" tabindex="0"
+           data-full="Certificates/DipIFR_ACCA.jpg" data-caption="DipIFR ACCA — IFRS Diploma · 2018">
+        <img src="Certificates/DipIFR_ACCA.jpg" alt="DipIFR ACCA Certificate" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.classList.add('img-missing');">
+        <div class="cert-img-label">DipIFR ACCA<small>IFRS Diploma — ACCA · 2018</small></div>
+      </div>
+      <div class="cert-img-card" role="listitem" tabindex="0"
+           data-full="Certificates/VAT_Compliance_Kuwait_MOF.jpg" data-caption="VAT Compliance — Kuwait Ministry of Finance · 2019">
+        <img src="Certificates/VAT_Compliance_Kuwait_MOF.jpg" alt="VAT Compliance Certificate" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.classList.add('img-missing');">
+        <div class="cert-img-label">VAT Compliance<small>Kuwait Ministry of Finance · 2019</small></div>
+      </div>
+      <div class="cert-img-card" role="listitem" tabindex="0"
+           data-full="Certificates/Advanced_Excel_AUC.jpg" data-caption="Advanced Excel — Financial Analysis · AUC · 2015">
+        <img src="Certificates/Advanced_Excel_AUC.jpg" alt="Advanced Excel Certificate" loading="lazy"
+             onerror="this.style.display='none';this.parentElement.classList.add('img-missing');">
+        <div class="cert-img-label">Advanced Excel<small>Financial Analysis — AUC · 2015</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Certificate Lightbox -->
+<div id="certLightbox" class="cert-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Certificate preview">
+  <button class="cert-lightbox-close" id="certLightboxClose" aria-label="Close">&times;</button>
+  <button class="cert-lightbox-nav prev" id="certLightboxPrev" aria-label="Previous">&#10094;</button>
+  <img id="certLightboxImg" src="" alt="">
+  <button class="cert-lightbox-nav next" id="certLightboxNext" aria-label="Next">&#10095;</button>
+  <div class="cert-lightbox-caption" id="certLightboxCaption"></div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <span class="section-tag">&#9679; Recommendations</span>
+    <h2 class="section-title">What Managers Say</h2>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-text">
+          Mohamed is one of the most accurate and reliable accountants I have worked with. His precision in financial reporting and VAT compliance management was exceptional throughout his tenure.
+        </div>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img src="review/Al-Safwa General Trading and Contracting Company.png" alt=""
+                 onerror="this.style.display='none';this.parentElement.textContent='S';" />
+          </div>
+          <div>
+            <div class="review-name">Financial Manager</div>
+            <div class="review-company">Al-Safwa General Trading &amp; Contracting Co.</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-text">
+          Mohamed demonstrated outstanding competence managing a large real estate financial portfolio. His contribution to improving the quality of our annual closing reports was direct and measurable. A truly dependable professional.
+        </div>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img src="review/Alghanim Real Estate Investment Group.png" alt=""
+                 onerror="this.style.display='none';this.parentElement.textContent='G';" />
+          </div>
+          <div>
+            <div class="review-name">Group Director</div>
+            <div class="review-company">Alghanim Real Estate Investment Group</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-text">
+          From day one, Mohamed showed clear professionalism in handling accounting systems, inventory reporting, and fixed-asset audits. He is a self-driven, detail-oriented accountant.
+        </div>
+        <div class="review-author">
+          <div class="review-avatar">
+            <img src="review/Oriental Weavers Carpet Company.png" alt=""
+                 onerror="this.style.display='none';this.parentElement.textContent='O';" />
+          </div>
+          <div>
+            <div class="review-name">Finance Department Head</div>
+            <div class="review-company">Oriental Weavers Carpet Company</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <span class="section-tag">&#9679; Let's Talk</span>
+    <h2 class="section-title">Have an Opportunity or Project?</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>I am open to new full-time opportunities, freelance projects, and financial consulting engagements. Feel free to reach out through any channel — I will respond promptly.</p>
+        <ul class="contact-list">
+          <li><div class="contact-icon">&#128222;</div><a href="tel:+96551234567">+965 5123 4567</a></li>
+          <li><div class="contact-icon">&#9993;&#65039;</div><a href="mailto:mohamed.essam.acc@example.com">mohamed.essam.acc@example.com</a></li>
+          <li><div class="contact-icon">&#128279;</div><a href="https://linkedin.com/in/mohamed-essam-accountant" target="_blank">linkedin.com/in/mohamed-essam-accountant</a></li>
+          <li><div class="contact-icon">&#128205;</div><span>Hawalli, Kuwait</span></li>
+        </ul>
+      </div>
+      <div class="cta-buttons">
+        <a href="https://wa.me/96551234567?text=Hello%20Mohamed%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect."
+           class="btn-whatsapp" target="_blank">
+          <svg viewBox="0 0 24 24" style="width:22px;height:22px;fill:white;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+        <a href="mailto:mohamed.essam.acc@example.com" class="btn-email">&#9993;&#65039; Send an Email</a>
+        <a href="https://linkedin.com/in/mohamed-essam-accountant" target="_blank" class="btn-linkedin">&#128279; LinkedIn Profile</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2025 Mohamed Essam Fathy &nbsp;&middot;&nbsp; CMA | DipIFR ACCA | VAT Certified &nbsp;&middot;&nbsp; All rights reserved.</p>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/96551234567?text=Hello%20Mohamed%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect."
+   class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<div class="wa-tooltip">Chat on WhatsApp</div>
+
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Animate chart bars
+  function triggerCharts(el) {
+    el.querySelectorAll('.chart-fill').forEach(bar => {
+      bar.style.width = bar.dataset.width + '%';
+    });
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        triggerCharts(entry.target);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.exp-card').forEach(el => observer.observe(el));
+
+  // Fallback: trigger all charts after 500ms
+  setTimeout(() => {
+    document.querySelectorAll('.chart-fill').forEach(bar => {
+      bar.style.width = bar.dataset.width + '%';
+    });
+  }, 500);
+
+  // Counter animation for stats bar
+  function animateCounters() {
+    document.querySelectorAll('.stat-number').forEach(el => {
+      const original = el.getAttribute('data-original') || el.textContent;
+      const target   = parseFloat(original.replace(/[^0-9.]/g, ''));
+      if (!target) return;
+      let start = null;
+      const duration = 1800;
+      const step = (timestamp) => {
+        if (!start) start = timestamp;
+        const progress = Math.min((timestamp - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const value = Math.floor(ease * target);
+        el.textContent = original.replace(/[0-9]+/, value);
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = original;
+      };
+      requestAnimationFrame(step);
+    });
+  }
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      animateCounters();
+      statsObserver.disconnect();
+    }
+  }, { threshold: 0.5 });
+  const statsBar = document.querySelector('.stats-bar');
+  if (statsBar) statsObserver.observe(statsBar);
+
+  /* =========================
+     Certificate Image Lightbox
+     ========================= */
+  (function () {
+    const cards = Array.from(document.querySelectorAll('.cert-img-card'));
+    const lightbox = document.getElementById('certLightbox');
+    if (!cards.length || !lightbox) return;
+
+    const imgEl     = document.getElementById('certLightboxImg');
+    const capEl     = document.getElementById('certLightboxCaption');
+    const closeBtn  = document.getElementById('certLightboxClose');
+    const prevBtn   = document.getElementById('certLightboxPrev');
+    const nextBtn   = document.getElementById('certLightboxNext');
+    let currentIdx  = 0;
+    let lastFocused = null;
+
+    function open(i) {
+      currentIdx = (i + cards.length) % cards.length;
+      const card = cards[currentIdx];
+      const full = card.getAttribute('data-full') || card.querySelector('img')?.getAttribute('src');
+      const cap  = card.getAttribute('data-caption') || '';
+      if (!full) return;
+      imgEl.src = full;
+      imgEl.alt = cap;
+      capEl.textContent = cap;
+      lightbox.classList.add('is-open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('cert-lock');
+      lastFocused = document.activeElement;
+      closeBtn.focus();
+    }
+    function close() {
+      lightbox.classList.remove('is-open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('cert-lock');
+      imgEl.src = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+    function next() { open(currentIdx + 1); }
+    function prev() { open(currentIdx - 1); }
+
+    cards.forEach((card, i) => {
+      card.addEventListener('click', () => open(i));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); }
+      });
+    });
+
+    closeBtn.addEventListener('click', close);
+    nextBtn.addEventListener('click', (e) => { e.stopPropagation(); next(); });
+    prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prev(); });
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('is-open')) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowRight') next();
+      else if (e.key === 'ArrowLeft') prev();
+    });
+
+    /* Swipe support on touch devices */
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    lightbox.addEventListener('touchend', (e) => {
+      const dx = e.changedTouches[0].screenX - touchStartX;
+      if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); }
+    }, { passive: true });
+  })();
+</script>
+
+<!-- ============================================================
+     STRANDS animated background (React Bits — vanilla JS port)
+     Loads ogl via ESM CDN. Shaders byte-identical to the original.
+     ============================================================ -->
+<script type="module">
+  import {
+    Renderer, Program, Mesh, Color, Triangle, RenderTarget
+  } from 'https://esm.sh/ogl';
+
+  const MAX_STRANDS = 12;
+  const MAX_COLORS  = 8;
+
+  const VERT = `#version 300 es
+in vec2 position;
+void main() {
+ gl_Position = vec4(position, 0.0, 1.0);
+}
+`;
+
+  const FRAG = `#version 300 es
+precision highp float;
+
+uniform float uTime;
+uniform vec2 uResolution;
+uniform vec3 uColors[${MAX_COLORS}];
+uniform int uColorCount;
+uniform int uStrandCount;
+uniform float uSpeed;
+uniform float uAmplitude;
+uniform float uWaviness;
+uniform float uThickness;
+uniform float uGlow;
+uniform float uTaper;
+uniform float uSpread;
+uniform float uHueShift;
+uniform float uIntensity;
+uniform float uOpacity;
+uniform float uScale;
+uniform float uSaturation;
+
+out vec4 fragColor;
+
+const float PI = 3.14159265;
+
+vec3 spectrum(float t) {
+ return 0.5 + 0.5 * cos(2.0 * PI * (t + vec3(0.00, 0.33, 0.67)));
+}
+
+vec3 samplePalette(float t) {
+ t = fract(t);
+ float scaled = t * float(uColorCount);
+ int idx = int(floor(scaled));
+ float blend = fract(scaled);
+ int nextIdx = idx + 1;
+ if (nextIdx >= uColorCount) nextIdx = 0;
+ return mix(uColors[idx], uColors[nextIdx], blend);
+}
+
+vec3 strandColor(float t) {
+ if (uColorCount > 0) return samplePalette(t);
+ return spectrum(t);
+}
+
+void main() {
+ vec2 uv = (gl_FragCoord.xy - 0.5 * uResolution) / uResolution.y;
+ uv /= max(uScale, 0.0001);
+
+ float e = 0.06 + uIntensity * 0.94;
+ float env = pow(max(cos(uv.x * PI * 1.3), 0.0), uTaper);
+
+ vec3 col = vec3(0.0);
+
+ for (int i = 0; i < ${MAX_STRANDS}; i++) {
+ if (i >= uStrandCount) break;
+
+ float fi = float(i);
+ float ph = fi * 1.7 * uSpread;
+ float freq = (2.0 + fi * 0.35) * uWaviness;
+ float spd = 1.4 + fi * 1.2;
+
+ float tt = uTime * uSpeed;
+ float w = sin(uv.x * freq + tt * spd + ph) * 0.60
+ + sin(uv.x * freq * 1.1 - tt * spd * 0.7 + ph * 1.7) * 0.40;
+
+ float amp = (0.1 + 0.02 * e) * env * uAmplitude;
+ float y = w * amp;
+
+ float d = abs(uv.y - y);
+ float thick = (0.001 + 0.05 * e) * (0.35 + env) * uThickness;
+ float g = thick / (d + thick * 0.45);
+ g = g * g;
+
+ float h = fi / float(uStrandCount) + uv.x * 0.30 + uTime * 0.04 + uHueShift;
+ col += strandColor(h) * g * env;
+ }
+
+ col *= 0.45 + 0.7 * e;
+ col = 1.0 - exp(-col * uGlow);
+
+ float gray = dot(col, vec3(0.2126, 0.7152, 0.0722));
+ col = max(mix(vec3(gray), col, uSaturation), 0.0);
+
+ float lum = max(max(col.r, col.g), col.b);
+ float alpha = clamp(lum, 0.0, 1.0) * uOpacity;
+
+ fragColor = vec4(col * uOpacity, alpha);
+}
+`;
+
+  const GLASS_FRAG = `#version 300 es
+precision highp float;
+
+uniform sampler2D uScene;
+uniform vec2 uResolution;
+uniform float uRadius;
+uniform float uRefraction;
+uniform float uDispersion;
+
+out vec4 fragColor;
+
+vec2 toUv(vec2 p) {
+ return p * (uResolution.y / uResolution) + 0.5;
+}
+
+void main() {
+ vec2 p = (gl_FragCoord.xy - 0.5 * uResolution) / uResolution.y;
+ float d = length(p);
+ float r = uRadius;
+
+ float edge = fwidth(d) * 1.5;
+ float mask = 1.0 - smoothstep(r - edge, r + edge, d);
+ if (mask <= 0.0) {
+ fragColor = vec4(0.0);
+ return;
+ }
+
+ // sphere height: 0 at the rim, 1 at the center
+ float z = sqrt(max(r * r - d * d, 0.0)) / r;
+ float nd = d / r; // 0 at the center, 1 at the rim
+
+ // refraction is confined to a narrow band near the rim; the rest stays undistorted
+ vec2 dir = d > 0.0 ? p / d : vec2(0.0);
+ float lens = smoothstep(0.85, 1.0, nd) * pow(nd, 6.0);
+ vec2 offset = -dir * lens * uRefraction * 0.15;
+ vec2 disp = -dir * lens * uDispersion * 0.012;
+
+ vec3 light;
+ light.r = texture(uScene, toUv(p + offset - disp)).r;
+ light.g = texture(uScene, toUv(p + offset)).g;
+ light.b = texture(uScene, toUv(p + offset + disp)).b;
+
+ // neutral fresnel rim (no color tint so the glass stays clear)
+ float fres = pow(1.0 - z, 3.0);
+ vec3 rim = vec3(1.0) * fres * 0.18;
+
+ // specular highlight from the upper-left
+ vec2 lightDir = normalize(vec2(-0.55, 0.6));
+ float spec = pow(max(dot(p / max(r, 1e-4), lightDir), 0.0), 6.0);
+ spec *= smoothstep(r, r * 0.55, d);
+
+ vec3 emissive = light + rim + vec3(spec) * 0.4;
+ float emissiveA = clamp(max(max(emissive.r, emissive.g), emissive.b), 0.0, 1.0);
+
+ // almost clear glass body: only a faint neutral darkening, mostly near the rim
+ float bodyA = 0.05 + fres * 0.05;
+
+ // composite emissive light over the clear body (premultiplied)
+ float outA = emissiveA + bodyA * (1.0 - emissiveA);
+ vec3 outRGB = emissive;
+
+ outRGB *= mask;
+ outA *= mask;
+
+ fragColor = vec4(outRGB, outA);
+}
+`;
+
+  const buildPalette = (colors) => {
+    const filled = colors && colors.length ? colors : ['#ffffff'];
+    const padded = [];
+    for (let i = 0; i < MAX_COLORS; i++) {
+      const hex = filled[i] ?? filled[filled.length - 1];
+      const c = new Color(hex);
+      padded.push([c.r, c.g, c.b]);
+    }
+    return padded;
+  };
+
+  const DEFAULTS = {
+    colors: ['#FF4242', '#7C3AED', '#06B6D4', '#EAB308'],
+    count: 3, speed: 0.5, amplitude: 1, waviness: 1, thickness: 0.7,
+    glow: 2.6, taper: 3, spread: 1, hueShift: 0, intensity: 0.6,
+    saturation: 1.5, opacity: 1, scale: 1.5,
+    glass: false, refraction: 1, dispersion: 1, glassSize: 1
+  };
+
+  function createStrands(container, userOptions = {}) {
+    if (!container) throw new Error('createStrands: container is required');
+    container.classList.add('strands-container');
+
+    const options = { ...DEFAULTS, ...userOptions };
+
+    const renderer = new Renderer({ alpha: true, premultipliedAlpha: true, antialias: true });
+    const gl = renderer.gl;
+    gl.clearColor(0, 0, 0, 0);
+    gl.enable(gl.BLEND);
+    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+    gl.canvas.style.backgroundColor = 'transparent';
+
+    const geometry = new Triangle(gl);
+    if (geometry.attributes.uv) delete geometry.attributes.uv;
+
+    const program = new Program(gl, {
+      vertex: VERT, fragment: FRAG,
+      uniforms: {
+        uTime:       { value: 0 },
+        uResolution: { value: [container.offsetWidth, container.offsetHeight] },
+        uColors:     { value: buildPalette(options.colors) },
+        uColorCount: { value: Math.min(options.colors.length, MAX_COLORS) },
+        uStrandCount:{ value: Math.min(options.count, MAX_STRANDS) },
+        uSpeed:      { value: options.speed },
+        uAmplitude:  { value: options.amplitude },
+        uWaviness:   { value: options.waviness },
+        uThickness:  { value: options.thickness },
+        uGlow:       { value: options.glow },
+        uTaper:      { value: options.taper },
+        uSpread:     { value: options.spread },
+        uHueShift:   { value: options.hueShift },
+        uIntensity:  { value: options.intensity },
+        uOpacity:    { value: options.opacity },
+        uScale:      { value: options.scale },
+        uSaturation: { value: options.saturation }
+      }
+    });
+
+    const mesh = new Mesh(gl, { geometry, program });
+
+    const renderTarget = new RenderTarget(gl, {
+      width: container.offsetWidth,
+      height: container.offsetHeight
+    });
+
+    const glassProgram = new Program(gl, {
+      vertex: VERT, fragment: GLASS_FRAG,
+      uniforms: {
+        uScene:      { value: renderTarget.texture },
+        uResolution: { value: [container.offsetWidth, container.offsetHeight] },
+        uRadius:     { value: 0.46 * options.glassSize },
+        uRefraction: { value: options.refraction },
+        uDispersion: { value: options.dispersion }
+      }
+    });
+    const glassMesh = new Mesh(gl, { geometry, program: glassProgram });
+
+    container.appendChild(gl.canvas);
+
+    function resize() {
+      const width  = container.offsetWidth;
+      const height = container.offsetHeight;
+      renderer.setSize(width, height);
+      program.uniforms.uResolution.value = [width, height];
+      renderTarget.setSize(width, height);
+      glassProgram.uniforms.uResolution.value = [width, height];
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    let animateId = 0;
+    const update = (t) => {
+      animateId = requestAnimationFrame(update);
+      const c = options;
+      program.uniforms.uTime.value       = t * 0.001;
+      program.uniforms.uColors.value     = buildPalette(c.colors);
+      program.uniforms.uColorCount.value = Math.min(c.colors.length, MAX_COLORS);
+      program.uniforms.uStrandCount.value= Math.min(Math.max(Math.round(c.count), 1), MAX_STRANDS);
+      program.uniforms.uSpeed.value      = c.speed;
+      program.uniforms.uAmplitude.value  = c.amplitude;
+      program.uniforms.uWaviness.value   = c.waviness;
+      program.uniforms.uThickness.value  = c.thickness;
+      program.uniforms.uGlow.value       = c.glow;
+      program.uniforms.uTaper.value      = c.taper;
+      program.uniforms.uSpread.value     = c.spread;
+      program.uniforms.uHueShift.value   = c.hueShift;
+      program.uniforms.uIntensity.value  = c.intensity;
+      program.uniforms.uOpacity.value    = c.opacity;
+      program.uniforms.uScale.value      = c.scale;
+      program.uniforms.uSaturation.value = c.saturation;
+
+      if (c.glass) {
+        renderer.render({ scene: mesh, target: renderTarget });
+        glassProgram.uniforms.uScene.value       = renderTarget.texture;
+        glassProgram.uniforms.uRefraction.value  = c.refraction;
+        glassProgram.uniforms.uDispersion.value  = c.dispersion;
+        glassProgram.uniforms.uRadius.value      = 0.46 * c.glassSize;
+        renderer.render({ scene: glassMesh });
+      } else {
+        renderer.render({ scene: mesh });
+      }
+    };
+    animateId = requestAnimationFrame(update);
+
+    return {
+      options,
+      setOptions(patch) { Object.assign(options, patch); },
+      destroy() {
+        cancelAnimationFrame(animateId);
+        window.removeEventListener('resize', resize);
+        if (gl.canvas.parentNode === container) container.removeChild(gl.canvas);
+        gl.getExtension('WEBGL_lose_context')?.loseContext();
+      }
+    };
+  }
+
+  // Mount Strands inside the hero as an animated background
+  const strands = createStrands(document.getElementById('strands'), {
+    colors: ['#C9943A', '#F5E9D4', '#254d7a'],  // matches portfolio palette
+    count: 4,
+    speed: 0.45,
+    amplitude: 1,
+    waviness: 1,
+    thickness: 0.7,
+    glow: 2.4,
+    taper: 3,
+    spread: 1,
+    intensity: 0.55,
+    saturation: 1.4,
+    opacity: 0.85,
+    scale: 1.6,
+    glass: false,
+    refraction: 1,
+    dispersion: 1,
+    glassSize: 1
+  });
+  window.strands = strands; // tweak from DevTools, e.g. strands.setOptions({ speed: 1.2 })
+</script>
+</body>
+</html>
